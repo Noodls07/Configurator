@@ -1,0 +1,45 @@
+﻿<Window x:Class="Configurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Configurator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1200"
+        Background ="Transparent"
+        AllowsTransparency="True" WindowStyle="None" Loaded="Window_Loaded"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Border Background="#272537"
+            CornerRadius="15">
+        <Grid x:Name="mainGrid" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200">
+                </ColumnDefinition>
+                <ColumnDefinition>
+                </ColumnDefinition>
+                <ColumnDefinition>
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48">
+                </RowDefinition>
+                <RowDefinition>
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="txBlock" TextWrapping="Wrap" Text="TextBlock" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="#FFDCE8EA"/>
+            <TextBlock TextWrapping="Wrap" Text="TextBlock" Margin="203,9,206,9" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="#FFDCE8EA" Grid.Column="1"/>
+            <TextBlock TextWrapping="Wrap" Text="TextBlock" Margin="274,9,135,10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="#FFDCE8EA" Grid.Column="2"/>
+
+            <StackPanel x:Name="objStackPanel" Grid.Row="1">
+                
+            </StackPanel>
+            <StackPanel x:Name="rvStackPanel" Grid.Row="1" Grid.Column="1">
+                <TreeView x:Name="myTR">
+
+                </TreeView>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>
