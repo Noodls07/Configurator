@@ -41,8 +41,6 @@ namespace Configurator.Model
             set { _num = value; }
         }
 
-
-
         public string Code
         {
             get { return _code; }

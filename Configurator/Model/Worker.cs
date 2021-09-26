@@ -53,11 +53,36 @@ namespace Configurator.Model
                 rv.IsMany = Convert.ToInt32(sqlite_datareader.GetString(4));
                 rv.Par = !sqlite_datareader.IsDBNull(5) ? sqlite_datareader.GetString(5) : "";
 
+                rv.Children = GetAllChildrenRv(rv);
 
                 all.Add(rv);
             }
             return all;
         }
 
+        public static List<string> GetAllChildrenRv(Rv rv)
+        {
+
+            List<Rv> all = new List<Rv>();
+            //SqliteCommand sqlite_cmd = DbConector.newConn.CreateCommand();
+            //sqlite_cmd.CommandText = $"SELECT * FROM IOLogic where num={io.Num} order by SN ";
+
+            //SqliteDataReader sqlite_datareader = sqlite_cmd.ExecuteReader();
+
+            //while (sqlite_datareader.Read())
+            //{
+            //    Rv rv = new Rv();
+            //    rv.Sn = Convert.ToInt32(sqlite_datareader.GetString(0));
+            //    rv.Num = Convert.ToInt32(sqlite_datareader.GetString(1));
+            //    rv.Code = sqlite_datareader.GetString(2);
+            //    rv.Title = sqlite_datareader.GetString(3);
+            //    rv.IsMany = Convert.ToInt32(sqlite_datareader.GetString(4));
+            //    rv.Par = !sqlite_datareader.IsDBNull(5) ? sqlite_datareader.GetString(5) : "";
+
+
+            //    all.Add(rv);
+            //}
+            return all;
+        }
     }
 }
