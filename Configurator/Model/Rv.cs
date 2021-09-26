@@ -13,7 +13,6 @@ namespace Configurator.Model
         public Rv(string RvCode) 
         {
             Code = RvCode;
-            Children = new inGroupRv().rvIn;
         }
 
         private int _num;
@@ -22,9 +21,14 @@ namespace Configurator.Model
         private string _par;
         private int _isMany;
         private int _sn;
-        private List<string> _children;
+        private IO _parentIO;
+        private List<Rv> _children;
 
-
+        public IO ParentIO
+        {
+            get { return _parentIO; }
+            set { _parentIO = value; }
+        }
         public string Par
         {
             get { return _par; }
@@ -47,15 +51,11 @@ namespace Configurator.Model
             set { _code = value; }
         }
 
-
-
         public string Title
         {
             get { return _title; }
             set { _title = value; }
         }
-
-
 
         public int IsMany
         {
@@ -63,9 +63,7 @@ namespace Configurator.Model
             set { _isMany = value; }
         }
 
-
-
-        public List<string> Children 
+        public List<Rv> Children 
         {
             get { return _children; }
             set { _children = value; }

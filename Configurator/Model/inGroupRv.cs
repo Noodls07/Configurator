@@ -8,16 +8,6 @@ namespace Configurator.Model
 {
     class inGroupRv 
     {
-        public List<string> rvIn = new List<string>();
-        public inGroupRv()
-        {
-            rvIn.Add("rv1");
-            rvIn.Add("rv2");
-            rvIn.Add("rv3");
-        }
-
-       
-
         
     }
 }
