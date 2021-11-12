@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CF.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Data.Sqlite, Version=5.0.10.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Data.Sqlite.Core.5.0.10\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
@@ -57,6 +60,7 @@
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -93,17 +97,28 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\CrComboBox.cs" />
+    <Compile Include="Controls\CrTextBlock.cs" />
+    <Compile Include="Controls\CrTextBox.cs" />
+    <Compile Include="Controls\CrTreeView.cs" />
+    <Compile Include="Converters\BoolConverter.cs" />
+    <Compile Include="Converters\HeaderToImageConverter.cs" />
+    <Compile Include="Converters\MyTypesConverter.cs" />
+    <Compile Include="TransformPropertyValue.cs" />
+    <Compile Include="StateTypes.cs" />
+    <Compile Include="ViewModel\IOView.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\dbConector.cs" />
-    <Compile Include="Model\inGroupRv.cs" />
+    <Compile Include="dbWorker.cs" />
     <Compile Include="Model\IO.cs" />
     <Compile Include="Model\Rv.cs" />
-    <Compile Include="Model\Worker.cs" />
+    <Compile Include="TypeOfRv.cs" />
+    <Compile Include="ViewModel\RvView.cs" />
+    <Compile Include="Worker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -121,6 +136,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Images\icons-Obj.png" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -129,6 +145,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons-AddObj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons-Group.png" />
+    <Resource Include="Images\icons-Int.png" />
+    <Resource Include="Images\icons-SysNum.png" />
+    <Resource Include="Images\icons-Text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons-AddRv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons-Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons-DelObj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons-DelRv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons-Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons-Unknown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CF.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icons-sync.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />

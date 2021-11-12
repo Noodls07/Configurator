@@ -8,11 +8,20 @@ namespace Configurator.Model
 {
     class IO 
     {
+        private int _num;
         private string _code;
         private string _title;
-        private int _num;
+        private int _orderInList;
+        private StateTypes _state;
+        public List<string> AllGroups;
+        public List<Rv> Requisites;
+        private string _tableName;
 
-        public List<Rv> Rekvs;
+        public int Num
+        {
+            get { return _num; }
+            set { _num = value; }
+        }
 
         public string Code
         {
@@ -26,12 +35,23 @@ namespace Configurator.Model
             set {  _title = value; }
         }
 
-        public int Num
+        public int OrderInList
         {
-            get { return _num; }
-            set { _num = value; }
+            get { return _orderInList; }
+            set { _orderInList = value; }
         }
 
+        public StateTypes State
+        {
+            get { return _state; }
+            set { _state = value; }
+        }
+
+        public string TableName
+        {
+            get { return _tableName; }
+            set { _tableName = value; }
+        }
 
         public IO()
         {
@@ -39,13 +59,11 @@ namespace Configurator.Model
         }
         public IO(int num, string code, string title)
         {
+            Num = num;
             Code = code;
             Title = title;
-            Num = num;
-            Rekvs = new List<Rv>();
-
+            Requisites = new List<Rv>();
+            AllGroups = new List<string>();
         }
-
-
     }
 }

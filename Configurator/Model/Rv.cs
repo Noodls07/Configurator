@@ -7,68 +7,102 @@ using System.Threading.Tasks;
 
 namespace Configurator.Model
 {
-    class Rv
+    class Rv 
     {
         public Rv(){}
-        public Rv(string RvCode) 
-        {
-            Code = RvCode;
-        }
 
+        #region private
         private int _num;
         private string _code;
         private string _title;
-        private string _par;
-        private int _isMany;
+        private string _parentGroup;
+        private string _path;
+        private bool _many;
         private int _sn;
+        private string _parentIOCode;
+        private TypeOfRv _type;
+        private StateTypes _state;
+        private string _tableColumnName;
+        private string _tableName;
+        private string _parentTableName;
         private IO _parentIO;
-        private List<Rv> _children;
+        private List<Rv> _requisites;
+        #endregion
 
-        public IO ParentIO
+        public int Num
         {
-            get { return _parentIO; }
-            set { _parentIO = value; }
+            get { return _num; }
+            set { _num = value; }
         }
-        public string Par
+        public string Code
         {
-            get { return _par; }
-            set { _par = value; }
+            get { return _code; }
+            set { _code = value; }
+        }
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
+        }
+        public string ParentGroup
+        {
+            get { return _parentGroup; }
+            set { _parentGroup = value; }
+        }
+        public string Path
+        {
+            get { return _path; }
+            set { _path = value; }
+        }
+        public bool Many
+        {
+            get { return _many; }
+            set { _many = value; }
         }
         public int Sn
         {
             get { return _sn; }
             set { _sn = value; }
         }
-        public int Num
+        public TypeOfRv Type
         {
-            get { return _num; }
-            set { _num = value; }
+            get { return _type; }
+            set { _type = value; }
         }
-
-        public string Code
+        public StateTypes State
         {
-            get { return _code; }
-            set { _code = value; }
+            get { return _state; }
+            set { _state = value; }
         }
-
-        public string Title
+        public string ParentIOCode
         {
-            get { return _title; }
-            set { _title = value; }
+            get { return _parentIOCode; }
+            set { _parentIOCode = value; }
         }
-
-        public int IsMany
+        public string TableColumnName
         {
-            get { return _isMany; }
-            set { _isMany = value; }
+            get { return _tableColumnName; }
+            set { _tableColumnName = value; }
         }
-
-        public List<Rv> Children 
+        public string TableName
         {
-            get { return _children; }
-            set { _children = value; }
+            get { return _tableName; }
+            set { _tableName = value; }
         }
-
-
+        public string ParentTableName
+        {
+            get { return _parentTableName; }
+            set { _parentTableName = value; }
+        }
+        public IO ParentIO
+        {
+            get { return _parentIO; }
+            set { _parentIO = value; }
+        }
+        public List<Rv> Requisites
+        {
+            get { return _requisites; }
+            set { _requisites = value; }
+        }
     }
 }

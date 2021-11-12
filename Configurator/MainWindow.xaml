@@ -8,36 +8,327 @@
         Title="MainWindow" Height="800" Width="1200"
         Background ="Transparent"
         AllowsTransparency="True" WindowStyle="None" Loaded="Window_Loaded"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        x:Name="myWin" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+        WindowStartupLocation="CenterScreen">
 
-    <Border Background="#272537"
-            CornerRadius="15">
-        <Grid x:Name="mainGrid" >
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Setter Property="Background" Value="#FFF1F1F1"/> 
+            <Setter Property="Foreground" Value="#FF0E0E0F"/>
+            <Setter Property="BorderBrush" Value="#FF4B699E"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
+    <!--"#272537"-->
+    <Border Background="#FF557EB0">
+        <Grid x:Name="mainGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200">
-                </ColumnDefinition>
-                <ColumnDefinition>
-                </ColumnDefinition>
-                <ColumnDefinition>
-                </ColumnDefinition>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="48">
-                </RowDefinition>
-                <RowDefinition>
-                </RowDefinition>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="48"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="txBlock" TextWrapping="Wrap" Text="TextBlock" Margin="10,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="#FFDCE8EA"/>
-            <TextBlock TextWrapping="Wrap" Text="TextBlock" Margin="203,9,206,9" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="#FFDCE8EA" Grid.Column="1"/>
-            <TextBlock TextWrapping="Wrap" Text="TextBlock" Margin="274,9,135,10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Foreground="#FFDCE8EA" Grid.Column="2"/>
 
-            <StackPanel x:Name="objStackPanel" Grid.Row="1">
-                
+            <Button x:Name="Add_IO" Width="98" Margin="1,5,1,5" 
+                    HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                    Grid.Column="0" Grid.Row="0" ToolTip="Создать объект" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="30" HorizontalAlignment="Left" 
+                           Source="Images/icons-AddObj.png" />
+                    <!--<TextBlock TextWrapping="Wrap" Width="58" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               Margin="2">+ ИО</TextBlock>-->
+                </StackPanel>
+            </Button>
+            <Button x:Name="Delete_IO"  Width="98"  
+                    HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                    Margin="1,5,0,5"
+                    Grid.Column="1" Grid.Row="0"
+                        ToolTip="Удалить объект">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="30" HorizontalAlignment="Left" 
+                           Source="Images/icons-DelObj.png" />
+                    <!--<TextBlock TextWrapping="Wrap" Width="58" 
+                               HorizontalAlignment="Stretch" 
+                               VerticalAlignment="Center" 
+                               Margin="2">- ИО</TextBlock>-->
+                </StackPanel>
+            </Button>
+
+
+            <Button x:Name="Add_Item"  Width="98"  
+                    HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                    Margin="1,5,0,5"
+                    Grid.Column="2" Grid.Row="0"
+                    ToolTip="Создать реквизит">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="30" HorizontalAlignment="Left" 
+                           Source="Images/icons-AddRv.png" />
+                    <!--<TextBlock TextWrapping="Wrap" Width="58" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               Margin="2">+ РВ</TextBlock>-->
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="Delete_Item"  Width="98"  
+                    HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                    Margin="1,5,0,5"
+                    Grid.Column="3" Grid.Row="0"
+                    ToolTip="Удалить реквизит">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="30" HorizontalAlignment="Left" 
+                           Source="Images/icons-DelRv.png" />
+                    <!--<TextBlock TextWrapping="Wrap" Width="58" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               Margin="2">- РВ</TextBlock>-->
+                </StackPanel>
+            </Button>
+
+
+
+            <Button x:Name="CloseBtn"
+                    Height="42" Width="42"
+                    Margin="5,4,5,4"
+                    Grid.Column="6" Grid.Row="0"
+                    ToolTip="Выход">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="30" HorizontalAlignment="Center" 
+                           Source="Images/icons-Close.png" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="SyncBtn"   
+                    HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                    Margin="0,4,50,4"
+                    Grid.Column="5" Grid.Row="0"
+                    ToolTip="Sync">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="30" HorizontalAlignment="Left" 
+                           Source="Images/icons-sync.png" />
+                    <!--<TextBlock TextWrapping="Wrap" Width="70" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               Margin="2">Сохранить</TextBlock>-->
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="SaveBtn"   
+                    HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                    Margin="0,4,5,4"
+                    Grid.Column="5" Grid.Row="0"
+                    ToolTip="Сохранить изменения">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="30" HorizontalAlignment="Left" 
+                           Source="Images/icons-Save.png" />
+                    <!--<TextBlock TextWrapping="Wrap" Width="70" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center" 
+                               Margin="2">Сохранить</TextBlock>-->
+                </StackPanel>
+            </Button>
+                    
+            <Border CornerRadius="10" Grid.Column="4" Grid.Row="2" 
+                            BorderBrush="#FF2E488D" Margin="1" BorderThickness="2" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    />
+            <Border CornerRadius="10" Grid.Column="5" Grid.ColumnSpan="6" Grid.Row="1" 
+                            BorderBrush="#FF2E488D" Margin="1" BorderThickness="2" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    />
+
+            <Border CornerRadius="10" Grid.ColumnSpan="4" Grid.Row="1" 
+                            BorderBrush="#FF2E488D" Margin="1" BorderThickness="2" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    />
+            <Border CornerRadius="10" Grid.Column="4" Grid.Row="1" 
+                            BorderBrush="#FF2E488D" Margin="1" BorderThickness="2" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    />
+
+
+            <TextBlock x:Name="txBlock" TextWrapping="Wrap" Text="Обьекты" Margin="1,0,0,1" 
+                       HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="22" 
+                       Foreground="#FFDCE8EA"
+                       Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4"
+                       TextAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="Дерево реквизитов"  Margin="1,0,1,0" 
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Center" FontSize="22" Foreground="#FFDBE8E8" 
+                       Grid.Column="4" Grid.Row="1" TextAlignment="Center"/>
+            <TextBlock TextWrapping="Wrap" Text="Свойства" 
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Center" FontSize="22" Foreground="#FFDCE8EA" 
+                       Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="5" TextAlignment="Center"/>
+
+            <StackPanel x:Name="objStackPanel" Grid.Row="2" Grid.ColumnSpan="4" Margin="10,10,10,10">
+
             </StackPanel>
-            <StackPanel x:Name="rvStackPanel" Grid.Row="1" Grid.Column="1">
-                <TreeView x:Name="myTR">
 
+            <StackPanel x:Name="rvStackPanel" Grid.Row="2" Grid.Column="4">
+
+                <TreeView Width="438" Height="685" 
+                          x:Name="RevizitTree" Margin="10,10,10,10" 
+                          Background="#FFF0F0F0"
+                           HorizontalAlignment="Stretch" 
+                          VerticalAlignment="Center" KeyDown="RevizitTree_KeyDown" >
+                          <!--TreeViewItem.Selected="RevizitTree_SelectedItem"-->
+
+                    <!--<TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate  ItemsSource="{Binding Requisites}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Image}" Stretch="Uniform"/>
+                                <TextBlock  Text="[ " VerticalAlignment="Center"/>
+                                <TextBlock  Text="{Binding Code}" VerticalAlignment="Center"/>
+                                <TextBlock  Text=" ]" VerticalAlignment="Center"/>
+                                <TextBlock  Text="{Binding Title}" VerticalAlignment="Center"/>
+                                
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="TreeViewItem">
+                            <Setter Property="IsSelected" Value="{Binding Selected}" />
+                            <Setter Property="IsExpanded" Value="True" />
+                            
+                        </Style>
+                    </TreeView.ItemContainerStyle>-->
+
+                    <TreeView.Resources>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <Image Width="30"  Source="{Binding 
+                                                        RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TreeViewItem}},
+                                                        Path=Tag,
+                                                        Converter={x:Static local:HeaderToImageConverter.Instance}}"/>
+                                            <TextBlock  Text="{Binding}" VerticalAlignment="Center"/>
+                                            
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <!--<Setter Property="IsExpanded" Value="True" />-->
+                        </Style>
+                    </TreeView.Resources>
                 </TreeView>
+
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="5" >
+                <Grid x:Name="csPropertyGrid" Margin="1,0,1,0"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="41"/>
+                    </Grid.RowDefinitions>
+                    <Border CornerRadius="10" Grid.ColumnSpan="2" Grid.Row="0" 
+                            BorderBrush="#FF2E488D" Margin="1" BorderThickness="2" 
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    />
+
+                    <TextBlock Margin="10" 
+                               Height="30"
+                               Grid.Column="0" Grid.Row="0" 
+                               Text="Реквизит" 
+                               HorizontalAlignment="Stretch" 
+                               VerticalAlignment="Center" FontSize="20" Foreground="#FFDDE8EA"  
+                               TextAlignment="Center"/>
+
+                    <TextBlock  Margin="10"
+                                Height="30"
+                                Grid.Column="1" Grid.Row="0" 
+                                Text="Значение" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Center" FontSize="20" Foreground="#FFDCE8EA"  
+                                TextAlignment="Center"/>
+
+                </Grid>
+
+                <Grid x:Name="csAllPropGrid" Margin="1,0,1,0">
+                    <!--DataContext="{Binding RvView}"-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <!--<RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>-->
+                    </Grid.RowDefinitions>
+                    <!--<TextBlock  x:Name="Code" Margin="3" Height="30"
+                                Grid.Column="0" Grid.Row="0" 
+                                HorizontalAlignment="Stretch" TextAlignment="Left"
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FFDCE8EA"  
+                                />
+                    <TextBox    x:Name="CodeBox" Margin="1" Height="30"
+                                Grid.Column="1" Grid.Row="0" 
+                                Text="{Binding Path = Code, 
+                                               UpdateSourceTrigger=PropertyChanged}" 
+                                HorizontalAlignment="Stretch" TextAlignment="Left"
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FF171919"  
+                                />
+                    <TextBlock  x:Name="Title" Margin="3" Height="30"
+                                Grid.Column="0" Grid.Row="1" 
+                                HorizontalAlignment="Stretch" TextAlignment="Left"
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FFDCE8EA"  
+                                />
+                    <TextBox    x:Name="TitleBox" Margin="1" Height="30"
+                                Grid.Column="1" Grid.Row="1" 
+                                Text="{Binding Path = Title, 
+                                               UpdateSourceTrigger=PropertyChanged}" 
+                                HorizontalAlignment="Stretch" TextAlignment="Left"
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FF171919"  
+                                />
+                    <TextBlock  x:Name="Many" Margin="3" Height="30"
+                                Grid.Column="0" Grid.Row="2" 
+                                HorizontalAlignment="Stretch" TextAlignment="Left"
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FFDCE8EA"  
+                                />
+                    <ComboBox   x:Name="ManyBox" Margin="1" Height="30"
+                                Grid.Column="1" Grid.Row="2" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FF171919"  
+                                />
+                    <TextBlock  x:Name="ParentGroup" Margin="3" Height="30"
+                                Grid.Column="0" Grid.Row="3" 
+                                HorizontalAlignment="Stretch" TextAlignment="Left"
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FFDCE8EA"  
+                                />
+                    <ComboBox  x:Name="ParentGroupBox" Margin="1" Height="30"
+                                Grid.Column="1" Grid.Row="3" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FF171919"  
+                                />
+                    <TextBlock  x:Name="Type" Margin="3" Height="30" 
+                                Grid.Column="0" Grid.Row="4" 
+                                HorizontalAlignment="Stretch" TextAlignment="Left"
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FFDCE8EA"
+                                />
+                    <ComboBox   x:Name="TypeBox" Margin="1" Height="30"
+                                Grid.Column="1" Grid.Row="4" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Center" FontSize="16" Foreground="#FF171919"  
+                                />-->
+                </Grid>
+
             </StackPanel>
 
         </Grid>

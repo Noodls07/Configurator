@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 
 namespace Configurator
@@ -23,7 +24,7 @@ namespace Configurator
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<IO> allIO ;
+       
   
         public MainWindow()
         {
@@ -32,62 +33,91 @@ namespace Configurator
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Worker.Start();
+            Worker.ShowIO();
 
 
-            DbConector.Connect();
-            allIO = Worker.GetAllIO();
+            Add_Item.Click += Add_Item_Click;
+            Delete_Item.Click += Delete_Item_Click;
 
+            Add_IO.Click += Add_IO_Click;
+            Delete_IO.Click += Delete_IO_Click;
 
-            foreach (var item in allIO)
-            {
-                Button newB = new Button();
-                newB.Name = "first" + item.Code;
-                newB.Height = 30;
-                newB.Width = mainGrid.ColumnDefinitions[0].ActualWidth;
-                newB.VerticalAlignment = VerticalAlignment.Top;
-                newB.HorizontalAlignment = HorizontalAlignment.Left;
-                newB.Content = item.Title;
+            SyncBtn.Click += SyncBtn_Click;
+            SaveBtn.Click += SaveBtn_Click;
+            CloseBtn.Click += CloseBtn_Click;
 
-                newB.Click += NewB_Click;
+            //ComboBoxes action
+            //ManyBox.SelectionChanged += ComboBox_SelectionChanged;
+            //ParentGroupBox.SelectionChanged += ComboBox_SelectionChanged;
+            //TypeBox.SelectionChanged += ComboBox_SelectionChanged;
 
-                objStackPanel.Children.Add(newB);
-            }
-
-
-
+            //CodeBox.TextChanged += CodeBox_TextChanged;
         }
 
-        private void NewB_Click(object sender, RoutedEventArgs e)
+        private void SyncBtn_Click(object sender, RoutedEventArgs e)
         {
-
-
-
-            //TreeViewItem item = new TreeViewItem();
-
-            //item.Header = io.Title;
-
-            
-
-            //foreach (var rv in io.Rvs.Children)
-            //{
-            //    item.Items.Add(rv);
-            //}
-            
-            
-            
-            //myTR.Items.Add(item);
-
-            
+            Worker.SyncDB();
         }
 
-        private void TxBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        //private void CodeBox_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    //Worker.TextBox_TextChanged(sender, e);
+        //}
+
+        private void RevizitTree_SelectedItem(object sender, RoutedEventArgs e)
         {
-            //objStackPanel.Children.Add(newB);
+            //(e.OriginalSource as TreeViewItem).IsSelected = false;
+            //Worker.TreeItem_Selected(sender, e);
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Worker.SaveChanges();
+        }
+
+        private void Delete_IO_Click(object sender, RoutedEventArgs e)
+        {
+            Worker.RemoveIOButton();
+        }
+
+        private void Add_IO_Click(object sender, RoutedEventArgs e)
+        {
+            Worker.CreateNewIO();
+        }
+
+        private void Add_Item_Click(object sender, RoutedEventArgs e)
+        {
+            Worker.AddTreeItem();
+        }
+
+        private void Delete_Item_Click(object sender, RoutedEventArgs e)
+        {
+            Worker.DeleteTreeItem();
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+            dbWorker.Disconnect();
+            Environment.Exit(0);
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+           DragMove();
         }
+
+        private void RevizitTree_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+            //Worker.DeleteTreeItem();
+            Worker.TreeItem_KeyDown(sender, e);
+        }
+
+        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    Worker.ComboBoxItems_CurrentChanged(sender, e);
+        //}
     }
 }
